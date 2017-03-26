@@ -193,3 +193,5 @@
 "C:\Users\j\code\CheeseMVC\src\CheeseMVC\Controllers\HomeController.cs"
 "C:\Users\j\code\CheeseMVC\src\CheeseMVC\Models\Cheese.cs"
 "C:\Users\j\code\CheeseMVC\src\CheeseMVC\Models\CheeseData.cs"
+"C:\Users\j\code\CheeseMVC\src\CheeseMVC\Models\CheeseType.cs"
+"C:\Users\j\code\CheeseMVC\src\CheeseMVC\ViewModels\AddCheeseViewModel.cs"
