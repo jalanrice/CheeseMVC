@@ -32,14 +32,15 @@ namespace CheeseMVC.Controllers
         {
             if(ModelState.IsValid)
             {
-                Cheese newCheese = new Cheese
-                {
-                    Name = addCheeseViewModel.Name,
-                    Description = addCheeseViewModel.Description,
-                    Type = addCheeseViewModel.Type
-                };
+                //Cheese newCheese = new Cheese
+                //{
+                //    Name = addCheeseViewModel.Name,
+                //    Description = addCheeseViewModel.Description,
+                //    Type = addCheeseViewModel.Type
+                //};
+                
+                CheeseData.Add(addCheeseViewModel.CreateCheese(addCheeseViewModel));
 
-                CheeseData.Add(newCheese);
                 return Redirect("/Cheese");
             }
 
@@ -64,23 +65,54 @@ namespace CheeseMVC.Controllers
 
             return Redirect("/");
         }
-
+        
         public IActionResult Edit(int cheeseId)
         {
-            ViewBag.cheese = CheeseData.GetById(cheeseId);
+            //cheeseId = 1;
+            var cheese = CheeseData.GetById(cheeseId);
+            AddEditCheeseViewModel addEditCheeseViewModel = new AddEditCheeseViewModel();
+            addEditCheeseViewModel.Name = cheese.Name;
+            addEditCheeseViewModel.Description = cheese.Description;
+            addEditCheeseViewModel.Type = cheese.Type;
+            addEditCheeseViewModel.Rating = cheese.Rating;
+            addEditCheeseViewModel.CheeseId = cheese.CheeseId;
 
-            return View();
+            return View(addEditCheeseViewModel);
         }
 
         [HttpPost]
-        public IActionResult Edit(int cheeseId, string name, string description)
+        public IActionResult Edit(AddEditCheeseViewModel addEditCheeseViewModel)
         {
-            var cheese = CheeseData.GetById(cheeseId);
-            cheese.Name = name;
-            cheese.Description = description;
+            if(ModelState.IsValid)
+            {
+                var cheese = CheeseData.GetById(addEditCheeseViewModel.CheeseId);
+                cheese.Name = addEditCheeseViewModel.Name;
+                cheese.Description = addEditCheeseViewModel.Description;
+                cheese.Type = addEditCheeseViewModel.Type;
+                cheese.Rating = addEditCheeseViewModel.Rating;
+            }
+            
+            
 
             return Redirect("/");
         }
+
+        //public IActionResult Edit(int cheeseId)
+        //{
+        //    ViewBag.cheese = CheeseData.GetById(cheeseId);
+
+        //    return View();
+        //}
+
+        //[HttpPost]
+        //public IActionResult Edit(int cheeseId, string name, string description)
+        //{
+        //    var cheese = CheeseData.GetById(cheeseId);
+        //    cheese.Name = name;
+        //    cheese.Description = description;
+
+        //    return Redirect("/");
+        //}
 
     }
 }

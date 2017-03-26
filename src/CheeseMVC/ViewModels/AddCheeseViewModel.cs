@@ -17,6 +17,10 @@ namespace CheeseMVC.ViewModels
         [Required(ErrorMessage = "You must give your cheese a description")]
         public string Description { get; set; }
 
+        [Display(Name = "Rating(1-5)")]
+        [Range(1,5)]
+        public int Rating { get; set; }
+
         public CheeseType Type { get; set; }
 
         public List<SelectListItem> CheeseTypes { get; set; }
@@ -42,6 +46,19 @@ namespace CheeseMVC.ViewModels
                 Value = ((int)CheeseType.Fake).ToString(),
                 Text = CheeseType.Fake.ToString()
             });
+        }
+
+        public Cheese CreateCheese (AddCheeseViewModel addCheeseViewModel)
+        {
+            Cheese newCheese = new Cheese
+            {
+                Name = addCheeseViewModel.Name,
+                Description = addCheeseViewModel.Description,
+                Type = addCheeseViewModel.Type
+            };
+
+
+            return newCheese;
         }
     }
 }
