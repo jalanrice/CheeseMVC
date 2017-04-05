@@ -1,6 +1,6 @@
 ﻿@model CheeseMVC.ViewModels.AddEditCheeseViewModel
 
-<h1>Edit Cheese @Model.Name (id=@Model.CheeseId)</h1>
+<h1>Edit Cheese @Model.Name (id=@Model.ID)</h1>
 
 <form asp-controller="Cheese" asp-action="Edit" method="post">
     <div class="form-group">
@@ -23,6 +23,6 @@
         <span asp-validation-for="Rating"></span>
     </div>
 
-    <input type="hidden" asp-for="CheeseId" />
+    <input type="hidden" asp-for="ID" />
     <input type="submit" value="Edit Cheese" />
 </form>

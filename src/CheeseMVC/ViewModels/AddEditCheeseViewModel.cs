@@ -7,6 +7,6 @@ namespace CheeseMVC.ViewModels
 {
     public class AddEditCheeseViewModel : AddCheeseViewModel
     {
-        public int CheeseId { get; set; }
+        public int ID { get; set; }
     }
 }
